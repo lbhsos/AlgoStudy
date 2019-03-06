@@ -40,6 +40,8 @@ def search_least_cost(cave):
             
     return cost[len(cave)-1][len(cave[0]) - 1]
 
+count = 1
+
 while(True):
     cave_size = input("")
     if cave_size is 0 : break
@@ -50,4 +52,5 @@ while(True):
         row = map(int, raw_input("").split(' '))
         cave.append(row)
 
-    print(search_least_cost(cave))
+    print 'Problem ' , count, ': ',  search_least_cost(cave)
+    count += 1
