@@ -27,8 +27,7 @@ while True :
         if data[item[0]][item[1]] is 0 : continue
         data[item[0]][item[1]] = 0 # visited
         result += 1
-        # pprint(data)
-        # print("")
+        
         navers = []
         if item[0] > 0 and data[item[0] - 1][item[1]] is not 0 : navers.append([item[0] - 1, item[1]])
         if item[1] > 0 and data[item[0]][item[1] - 1] is not 0 : navers.append([item[0], item[1] - 1])
