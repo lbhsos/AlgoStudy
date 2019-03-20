@@ -1,15 +1,12 @@
-import heapq
 import itertools
 
 class Chicken(object):
     def __init__(self, position):
         self.position = position
         self.chicken_distances = []
-        self.sum = 0
 
     def append_chicken_distance(self, house_distance):
         self.chicken_distances.append(house_distance)
-        self.sum += house_distance
 
 def find_minimum_distance(M, chickens, houses):
     house_size = len(houses)
