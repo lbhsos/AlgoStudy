@@ -1,6 +1,7 @@
 from queue import Queue
 from pprint import pprint
 
+
 def bfs(A, B, source, destination):
     visited = [False] * 100001
     q = Queue()
@@ -23,9 +24,11 @@ def bfs(A, B, source, destination):
         if next == destination:
             return level
         
-        navers = [next+1,next-1,next+A,next+B,next-A,next-B,next*A,next*B]
+        navers = [next+1, next-1, next+A, 
+                  next+B, next-A, next-B, 
+                  next*A, next*B]
         for naver in navers:
-            if naver <= 100000 and naver >= 0 :
+            if naver <= 100000 and naver >= 0:
                 if not visited[naver]:
                     q.put(naver)
                     visited[naver] = True
@@ -33,4 +36,4 @@ def bfs(A, B, source, destination):
 
 A, B, N, M = list(map(int, input("").split(' ')))
 
-print(bfs(A,B,N,M))
+print(bfs(A, B, N, M))
