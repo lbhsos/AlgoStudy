@@ -64,6 +64,8 @@ public class Dijkstra_4485 {
             while(flag) {
 
                 cur = getLowestDist(N);
+                getPrint(N);
+                getvisitPrint(N);
                 int curI = cur[0];
                 int curJ = cur[1];
 
@@ -130,7 +132,7 @@ public class Dijkstra_4485 {
             }
 
         }
-/*
+
         public static void getPrint(int N){
             for (int i=0; i<N; i++){
                 for(int j=0; j<N; j++){
@@ -148,7 +150,7 @@ public class Dijkstra_4485 {
             }
             System.out.println("---------------------------------------");
         }
-*/
+
     }
 
 
