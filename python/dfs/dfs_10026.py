@@ -52,6 +52,7 @@ for i in range(N):
         red_green_visited[i].append(False)
 
 count = 0
+
 while find_start(visited, N) is not None:
     start = find_start(visited, N)
     visited = dfs(visited, 
