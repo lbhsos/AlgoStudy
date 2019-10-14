@@ -59,7 +59,6 @@ for t in range(test):
     n, k = list(map(int, input().split(" ")))
     # 4개씩 끊어서 map에 넣기
     n_str = input()
-    add_num(n_str)
     length = n // 4
     for _ in range(length):
         n_str = rotate(n_str)
