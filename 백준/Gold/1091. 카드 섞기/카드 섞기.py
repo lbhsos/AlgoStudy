@@ -1,43 +1,28 @@
+from sys import stdin
 N = int(input()) # N은 3의 배수
-cards = [0] * N
-P = list(map(int, input().split(" "))) # 0 1 2 중 하나,
-S = list(map(int, input().split(" ")))
+P = list(map(int, input().split(" ")))
+S = list(map(int, stdin.readline().split()))
+cards = [i%3 for i in range(N)]
 
-def init():
-    cards_info = dict()
-    for i in range(N):
-        cards_info[i] = (i, i%3)
-    return cards_info
-
-def shuffle(cards_info):
+# 거꾸로돌아간다.
+def shuffle(P):
     global S
 
-    for origin_idx, card_info in cards_info.items():
-        current_idx, current_host = card_info[0], card_info[1]
-        new_idx, new_host = S[current_idx], S[current_idx]%3
-        cards_info[origin_idx] = (new_idx, new_host)
-    return cards_info
+    arr =[0] * N
+    for i in range(N):
+        S_value = S[i]
+        arr[S_value] = P[i]
+    return arr
 
-def match(cards_info):
-    global P
-    for origin_idx, card_info in cards_info.items():
-        current_idx, current_host = card_info[0], card_info[1]
-        if P[origin_idx] != current_host:
-            return False
-    return True
-
-
-cards_info = init()
 answer = 0
+origins = P
 
-while True:
-    if match(cards_info):
+while P != cards:
+    P = shuffle(P)
+    if P == origins:
+        answer=-1
         break
-    if answer > 1000000:
-        answer = -1
-        break
-    new_cards = shuffle(cards_info)
-    cards_info = new_cards
+
     answer += 1
 
 print(answer)
