@@ -1,60 +1,28 @@
-n = int(input())
-weights = list(map(int, input().split(" ")))
-m = int(input())
-box_weights = list(map(int, input().split(" ")))
-box_moved = [False] * m
-weights.sort()
-box_weights.sort()
-pointer = n - 1
-box_pointer = m - 1
-answer = 0
+import sys
+n = int(sys.stdin.readline())
+cranes = sorted(map(int, sys.stdin.readline().split()), reverse=True)
+m = int(sys.stdin.readline())
+boxes = sorted(map(int, sys.stdin.readline().split()), reverse=True)
 
-if weights[-1] < box_weights[-1]:
-    answer = -1
-    print(answer)
+if cranes[0] < boxes[0]:
+    print(-1)
     exit()
 
-def done(box_moved):
-    for box_move in box_moved:
-        if box_move == False:
+def binary_search(l, r):
+    def check(t):
+        if n * t < m:
             return False
-    return True
+        for i in range(t, m, t):
+            if boxes[i] > cranes[i // t]:
+                return False
+        return True
+    while l <= r:
+        mid = (l+r)//2
+        if check(mid):
+            ans = mid
+            r = mid-1
+        else:
+            l = mid+1
+    return ans
 
-def get_next_box(box_moved):
-    m = len(box_moved)
-    for i in range(m - 1, -1, -1):
-        if not box_moved[i]:
-            return i
-    return len(box_moved) - 1
-while True:
-
-    if done(box_moved):
-        break
-    # print(box_moved)
-    # print(pointer, box_pointer)
-    if pointer == -1 or box_pointer == -1:
-        answer += 1
-        pointer = n - 1
-        box_pointer = get_next_box(box_moved)
-
-    if box_moved[box_pointer]:
-        box_pointer -= 1
-        continue
-
-    if weights[pointer] >= box_weights[box_pointer]:
-        # if not box_moved[box_pointer]:
-        box_moved[box_pointer] = True
-        pointer -= 1
-    box_pointer -= 1
-
-
-if pointer != n - 1:
-    answer += 1
-
-print(answer)
-
-
-
-
-
-
+print(binary_search(1, m))
