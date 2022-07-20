@@ -3,15 +3,7 @@ import math
 
 n = int(sys.stdin.readline())
 k = int(sys.stdin.readline())
-d = [0] * (n+1) # d[i] = i*i 의 번호
 
-closed_num = 0
-for i in range(1,n+1):
-    d[i] = (i-1) * n + i
-    if d[i] > k:
-        closed_num = i - 1
-        break
-# print(d)
 def check(num):
     global n
     cnt = 0
