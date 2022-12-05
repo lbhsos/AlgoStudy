@@ -9,9 +9,7 @@
  * }
  */
 class Solution {
-    private ListNode originHead;
-    private boolean first = false;
-    
+
     public ListNode swapPairs(ListNode head) {
         if (head==null || head.next==null) { 
             return head;
