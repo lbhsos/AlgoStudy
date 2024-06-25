@@ -1,16 +1,17 @@
 class Solution {
     public int jump(int[] nums) {
-      int count = 0;
-      int right = 0;
-      int farthest = 0;
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[n- 1] = 0;
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = 1; j <= nums[i]; j++) {
+                if (i + j < n && dp[i + j] != Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], dp[i + j] + 1);
+                }
+            }
+        }
 
-      for(int i = 0; i < nums.length - 1; i ++) {
-          farthest = Math.max(farthest, i + nums[i]);
-          if(i == right) {
-              right = farthest;
-              count++;
-          }
-      }  
-      return count;
-    }
+    return dp[0];
+}
 }
